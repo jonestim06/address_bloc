@@ -14,7 +14,8 @@
       puts "2 - Create an entry"
       puts "3 - Search for an entry"
       puts "4 - Import entries from a CSV"
-      puts "5 - Exit"
+      puts "5 - Purge all entries"
+      puts "6 - Exit"
       print "Enter your selection: "
 
       selection = gets.to_i
@@ -38,6 +39,11 @@
         read_csv
         main_menu
       when 5
+        system "clear"
+        @address_book.purge_all
+        puts "All Entries deleted"
+        main_menu
+      when 6
         puts "Good-bye!"
 
         exit(0)
@@ -110,6 +116,12 @@
         puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
         read_csv
       end
+    end
+
+    def purge_all
+    system "clear"
+    @entries.delete_all
+
     end
 
     def entry_submenu(entry)
